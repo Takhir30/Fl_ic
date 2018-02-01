@@ -1,6 +1,6 @@
-from flask import Flask
 import argparse
 import logging
+from flask import Flask
 
 
 @app.route('/')
