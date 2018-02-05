@@ -2,7 +2,7 @@ from __future__ import with_statement
 from alembic import context
 from sqlalchemy import engine_from_config, pool
 from logging.config import fileConfig
-from app import set_adres
+from db import set_adres
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
@@ -22,7 +22,7 @@ target_metadata = None
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 
-config.set_main_option('sqlalchemy.url',set_adres())
+config.set_main_option('sqlalchemy.url',set_adres('Data.txt'))
 
 
 def run_migrations_offline():
