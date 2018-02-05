@@ -1,8 +1,17 @@
 from sqlalchemy import create_engine, Column, Integer, String
-from app import set_adres
 
 
-engine = create_engine(set_adres())
+def set_adres(file_name):
+    with open(file_name) as fn:
+        var = {line.strip().split(' ')[0]:line.strip().split(' ')[2] for line in fn}
+    login = var['login']
+    password = var['password']
+    db = ['name']
+    host = ['host']
+    return "'postgresql://' + {} + ':' + {} + '@' + {} + '/' + {}".format(login, password, host, dbname)
+
+
+engine = create_engine(set_adres('Data.txt'))
 
 class User(Base):
     __tablename__ = 'users'
