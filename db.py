@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy import Column, Integer, String
 
 
 def set_adres(file_name):
@@ -10,8 +10,6 @@ def set_adres(file_name):
     host = ['host']
     return "'postgresql://' + {} + ':' + {} + '@' + {} + '/' + {}".format(login, password, host, dbname)
 
-
-engine = create_engine(set_adres('Data.txt'))
 
 class User(Base):
     __tablename__ = 'users'
