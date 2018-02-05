@@ -1,6 +1,11 @@
 import argparse
 import logging
 from flask import Flask
+from sqlalchemy import create_engine
+from db import set_adres
+
+
+engine = create_engine(set_adres('Data.txt'))
 
 
 @app.route('/')
