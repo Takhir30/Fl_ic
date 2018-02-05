@@ -22,7 +22,7 @@ target_metadata = None
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 
-config.set_main_option('sqlalchemy.url',set_adres('Data.txt'))
+config.set_main_option('sqlalchemy.url', set_adres('Data.txt'))
 
 
 def run_migrations_offline():
