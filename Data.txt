@@ -1,4 +1,4 @@
 login = postgres
 password = 5432
 dbname = users
-host = postgres
+host = localhost
