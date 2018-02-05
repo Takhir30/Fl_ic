@@ -38,3 +38,6 @@ for instance in session.query(User):
         instance.delete()
     elif len(instanse.password) < 4:
         instanse.password += '/*-'
+
+if __name__ = '__main__':
+    main()
