@@ -1,9 +1,8 @@
-from sqlalchemy import Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine, Column, Integer, String
+from app import set_adres
 
-Session = sessionmaker()
-Base = declarative_base()
+
+engine = create_engine(set_adres())
 
 class User(Base):
     __tablename__ = 'users'
@@ -32,4 +31,3 @@ for instance in session.query(User):
         instance.delete()
     elif len(instanse.password) < 4:
         instanse.password += '/*-'
-session.commit()
