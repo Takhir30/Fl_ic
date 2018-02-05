@@ -1,12 +1,14 @@
 import argparse
 import logging
 from flask import Flask
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, MetaData
 from db import set_address
 
 def chain():
     engine = create_engine(set_address('Data.txt'))
-    return engine
+    meta = MetaData()
+    meta.reflect(bind=engine)
+    users_table = meta.tables['users']
 
 
 @app.route('/')
