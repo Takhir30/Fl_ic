@@ -15,17 +15,6 @@ if __name__ == '__main__':
     parser.add_argument('--host', default='127.0.0.1', help='What host?')
     parser.add_argument('--port', default=5000, type=int, help='What port?')
     args = parser.parse_args()
-
-
-    def set_adres(host=args.host):
-        with open('Data.txt') as dt:
-            var = {line.strip().split(' ')[0]:line.strip().split(' ')[2] for line in dt}
-        login = var['login']
-        password = var['password']
-        db = ['name']
-        return "'postgresql://' + {} + ':' + {} + '@' + {} + '/' + {}".format(login, password, host, dbname)
-
-
     logging.info('Prog started')
     app = Flask(__name__)
     app.run(debug=args.debug, host=args.host, port=args.port)
