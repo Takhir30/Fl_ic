@@ -4,8 +4,9 @@ from flask import Flask
 from sqlalchemy import create_engine
 from db import set_address
 
-
-engine = create_engine(set_address('Data.txt'))
+def chain():
+    engine = create_engine(set_address('Data.txt'))
+    return engine
 
 
 @app.route('/')
