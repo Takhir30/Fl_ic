@@ -5,4 +5,4 @@ def set_address(file_name):
     password = var['password']
     db = ['name']
     host = ['host']
-    return "postgresql://{}:{}@{}/{}".format(login, password, host, dbname)
+    return f"postgresql://{login}:{password}@{host}/{dbname}"
