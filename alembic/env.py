@@ -22,6 +22,11 @@ target_metadata = None
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 def set_adres():
+    with open('Data.txt') as dt:
+        var = {line.strip().split(' ')[0]:line.strip().split(' ')[2] for line in dt}
+    login = var['login']
+    password = var['password']
+    name = ['name']
     config.set_main_option('sqlalchemy.url', 'postgresql://' + login + ':' + password + '@' + host + '/' + name)
 
 
