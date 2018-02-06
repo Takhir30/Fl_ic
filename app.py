@@ -8,7 +8,9 @@ def chain():
     engine = create_engine(set_address('Data.txt'))
     meta = MetaData()
     meta.reflect(bind=engine)
-    users_table = meta.tables['users']
+    tables = {meta.tables:meta.tables[i] for i in meta.tables}
+    return engine, tables
+engine, tables = chain()
 
 
 @app.route('/')
