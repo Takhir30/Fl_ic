@@ -11,9 +11,6 @@ def chain():
     tables = {meta.tables:meta.tables[i] for i in meta.tables}
     return engine, tables
 
-    
-engine, tables = chain()
-
 
 @app.route('/')
 def hello():
