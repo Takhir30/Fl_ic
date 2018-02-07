@@ -1,8 +1,9 @@
 import argparse
 import logging
 from flask import Flask
-from sqlalchemy import create_engine, MetaData
-from views import chain
+
+
+app = Flask(__name__)
 
 
 @app.route('/')
@@ -18,6 +19,5 @@ if __name__ == '__main__':
     parser.add_argument('--port', default=5000, type=int, help='What port?')
     args = parser.parse_args()
     logging.info('Prog started')
-    app = Flask(__name__)
     app.run(debug=args.debug, host=args.host, port=args.port)
     logging.info('Prog finished')
