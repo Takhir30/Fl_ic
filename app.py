@@ -2,14 +2,7 @@ import argparse
 import logging
 from flask import Flask
 from sqlalchemy import create_engine, MetaData
-from db import set_address
-
-def chain():
-    engine = create_engine(set_address('Data.txt'))
-    meta = MetaData()
-    meta.reflect(bind=engine)
-    tables = {meta.tables:meta.tables[i] for i in meta.tables}
-    return engine, tables
+from views import chain
 
 
 @app.route('/')
