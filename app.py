@@ -1,13 +1,19 @@
 import argparse
 import logging
-from flask import Flask
-from sqlalchemy import create_engine
+from flask import Flask, g
+from sqlalchemy import create_engine, MetaData
 from db import set_address
 
 
 def chain():
     engine = create_engine(set_address('Data.txt'))
     return engine
+
+def chain_1():
+    db = g.engine = chain()
+    meta = MetaData(bind=db)
+    conn = db.connect()
+    return meta, conn
 
 app = Flask(__name__)
 
