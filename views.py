@@ -1,13 +1,10 @@
-from sqlalchemy import MetaData, Table
+from sqlalchemy import Table
 from sqlalchemy.sql import select
-from flask import g
-from app import  app, chain
+from app import app, chain_1
 
 
 with app.app_context():
-    db = g.engine = chain()
-    meta = MetaData(bind=db)
-    conn = db.connect()
+    meta, conn = chain_1()
     users_table = Table('users', meta, autoload=True)
     s = select([users])
     result = conn.execute(s)
