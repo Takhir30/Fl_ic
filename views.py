@@ -1,18 +1,11 @@
-from sqlalchemy import create_engine, MetaData
+from sqlalchemy import MetaData, Table
 from flask import g
-from db import set_address
-from app import  app
-
-
-def chain():
-    engine = create_engine(set_address('Data.txt'))
-    return engine
+from app import  app, chain
 
 
 with app.app_context():
     db = g.engine = chain()
-    meta = MetaData()
-    meta.reflect(bind=db)
-    users_table = meta.tables['users']
+    meta = MetaData(bind=db)
+    users_table = Table('users', meta, autoload=True)
     for row in users_table:
         print("user:", row)
