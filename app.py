@@ -1,7 +1,7 @@
 import argparse
 import logging
 from flask import Flask, g
-from sqlalchemy import create_engine, MetaData
+from sqlalchemy import create_engine
 from db import set_address
 
 
@@ -9,13 +9,15 @@ def chain():
     engine = create_engine(set_address('Data.txt'))
     return engine
 
-def chain_1():
-    db = g.engine = chain()
-    meta = MetaData(bind=db)
-    conn = db.connect()
-    return meta, conn
+def get_db():
+    if not hasattr(g, 'db'):
+        g.db = chain()
+    return g.db
 
-app = Flask(__name__)
+@app.teardown_appcontext
+def close_db(error):
+    if hasattr(g, 'db'):
+        g.db.close()
 
 
 @app.route('/')
@@ -31,5 +33,6 @@ if __name__ == '__main__':
     parser.add_argument('--port', default=5000, type=int, help='What port?')
     args = parser.parse_args()
     logging.info('Prog started')
+    app = Flask(__name__)
     app.run(debug=args.debug, host=args.host, port=args.port)
     logging.info('Prog finished')
