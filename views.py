@@ -1,11 +1,13 @@
-from sqlalchemy import Table
+from sqlalchemy import Table, MetaData
 from sqlalchemy.sql import select
-from app import app, chain_1
+from app import app, get_db
 
 
 with app.app_context():
-    meta, conn = chain_1()
-    users_table = Table('users', meta, autoload=True)
+    engine = get_db()
+    meta = MetaData(bind=engine)
+    users = Table('users', meta, autoload=True)
+    conn = engine.connect
     s = select([users])
     result = conn.execute(s)
     for row in result:
